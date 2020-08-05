@@ -6,20 +6,30 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Size;
 
-import lombok.Data;
+
 
 
 @Entity
 @Table(name = "page")
-
 public class Page {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int id;
+	
+	@Size(min = 2, message = "Title must have atleast 2 characters")
 	public String title;
+	
 	public String slug;
+	
+	@Size(min=5,message="Content must have atleast 5 words")
+	public String contents;
+	
+	public int sorting;
+	
+	
 	public int getId() {
 		return id;
 	}
@@ -50,8 +60,6 @@ public class Page {
 	public void setSorting(int sorting) {
 		this.sorting = sorting;
 	}
-	public String contents;
-	public int sorting;
 	
 	
 	
