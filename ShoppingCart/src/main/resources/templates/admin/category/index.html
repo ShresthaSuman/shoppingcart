@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html>
+	<head th:replace="fragments/head"></head>
+	<body>
+	<nav th:replace="fragments/nav :: nav-category"></nav>
+		<div class="container-fluid">
+		  <div class="row">
+		   <nav th:replace="fragments/sidebarMenu"></nav>
+		    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+		      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+		        <h1 class="h2">Category List</h1>
+		         <a href="/admin/category/add"><button type="button" class="btn btn-primary" float="left">Add new Category</button></a>
+		       </div>
+			<div>
+			<div th:if="${message}" th:text="${message}" th:class="${'alert' + alertClass}"></div>
+					<div th:if="${!category.empty}">
+						<table class="table">
+							  <thead class="thead-dark">
+							    <tr>
+							      <th scope="col">Name</th>
+							      <th scope="col">Slug</th>
+							      
+							       <th scope="col">Action</th>
+							    </tr>
+							  </thead>
+							  <tbody>
+								  <tr th:each="category: ${category}">
+								  	<td th:text="${category.name}"> </td>
+								  	<td th:text="${category.slug}"> </td>
+								  	
+								  	<td>
+								  		<a th:href="@{'/admin/category/edit/'+ ${category.id}}"><button type="button" class="btn btn-info">Edit</button></a>
+								  	<a th:if="${category.slug != 'home'}" th:href="@{'/admin/category/delete/'+ ${category.id}}" class="deleteConfirmation">	<button type="button" class="btn btn-danger" >Delete</button></a>
+								  	</td>
+								  </tr>
+							  </tbody>
+					
+					</div>
+					
+					<div th:unless="${!category.empty}">
+						Category is empty
+					</div>
+		     </div>
+		    
+		    </main>
+		  </div>
+		</div>
+		<footer th:replace="fragments/footer" ></footer>
+	
+	</body>
+
+</html>

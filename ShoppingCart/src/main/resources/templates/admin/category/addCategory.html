@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+	<head th:replace="fragments/head" >
+	 
+	</head>
+
+ 	<body>
+  		<nav th:replace="fragments/nav :: nav-category"></nav>
+
+		<div class="container-fluid">
+		  <div class="row">
+		   <nav th:replace="fragments/sidebarMenu"></nav>
+		    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+		      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+		        <h1 class="h2">Add Category</h1>
+		         <a href="/admin/pages"><button type="button" class="btn btn-dark" float="left">Back</button></a>
+		          </div>
+						
+		           <div> 
+		           <div th:if="${message}" th:text="${message}" th:class="${'alert' + alertClass}"></div>
+		           <form th:action="@{/admin/category/addCategory}" method="POST" th:object="${category}">
+		           
+		           <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger" >
+		           <h2>Has errors</h2>
+		            </div>
+		           
+		           	<div class="form-group">
+		           		<label name>Name</label>
+		           		<input type="text" class="form-control" th:field="*{name}" placeholder="Enter category name" required/>
+		           		<span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+		           	</div>
+		           	  <div>
+					  	<button type="submit" class="btn btn-info">Add Category</button>
+					  </div>
+		          
+		           
+		           </form>
+		    
+		    
+		    
+		    
+		    </div>
+			</main>
+		  </div>
+		</div>
+			<footer th:replace="fragments/footer" ></footer>
+	</body>
+</html>
+		
+		
+		
+		
+		
+		
