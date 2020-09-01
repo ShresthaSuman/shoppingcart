@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head th:replace="fragments/head"></head>
+<body>
+	<nav th:replace="fragments/nav :: nav-product"></nav>
+	<div class="container-fluid">
+		<div class="row">
+			<nav th:replace="fragments/sidebarMenu"></nav>
+			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+				<div
+					class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+					<h1 class="h2">Product List</h1>
+					<a href="/admin/product/add"><button type="button"
+							class="btn btn-primary" float="left">Add new Product</button></a>
+				</div>
+				<div>
+					<div th:if="${message}" th:text="${message}"
+						th:class="${'alert' + alertClass}"></div>
+					<div th:if="${!product.empty}">
+						<table  class="table table-striped table-bordered table-sm"  id="example" >
+							<thead class="thead-dark">
+								<tr>
+									<th scope="col">Name</th>
+									<th scope="col">Image</th>
+									<th scope="col">Category Name</th>
+									<th scope="col">Price</th>
+
+									<th scope="col">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="product: ${product}">
+									<td th:text="${product.name}"></td>
+									<td>
+										<img alt="${product.image}" th:src="@{'/media/'+ ${product.image} }" style="width:50px;">
+									</td>
+									<td th:text="${catMap[__${product.categoryId}__]}"></td>
+									<td th:text="${product.price} + '$' "></td>
+
+									<td>
+									 <a th:href="@{'/admin/product/edit/'+ ${product.id}}"><buttontype="button" class="btn btn-info">Edit</button></a>
+									 <a th:href="@{'/admin/product/delete/'+ ${product.id}}" class="deleteConfirmation"><button type="button" class="btn btn-danger">Delete</button></a>
+									</td>
+								</tr>
+							</tbody>
+					</div>
+
+					<div th:unless="${!product.empty}">
+						There are no product in the list <a href="/admin/product/add"><button
+								type="button" class="btn btn-primary" float="left">Add
+								new Product</button></a>
+					</div>
+				</div>
+
+			</main>
+		</div>
+		
+	</div>
+	<footer th:replace="fragments/footer"></footer>
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+		$(document).ready(function () {
+			  $('#example').DataTable({
+				  "lengthMenu": [ 5, 10, 15, 20 ],
+				  "pageLength": 5
+			  });
+			  $('.dataTables_length').addClass('bs-select');
+			});
+</script>

@@ -6,4 +6,8 @@ import com.suman.dev.entity.Product;
 
 public interface AdminProductRepository extends JpaRepository<Product, Integer>{
 
+	Product findBySlug(String slug);
+
+	Product findBySlugAndIdNot(String slug, int id);
+
 }

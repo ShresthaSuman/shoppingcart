@@ -1,62 +1,71 @@
 <!doctype html>
 <html lang="en">
 
-	<head th:replace="fragments/head" >
-	 
-	</head>
+<head th:replace="fragments/head">
 
- 	<body>
-  		<nav th:replace="fragments/nav :: nav-page"></nav>
+</head>
 
-		<div class="container-fluid">
-		  <div class="row">
-		   <nav th:replace="fragments/sidebarMenu"></nav>
-		    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-		      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-		        <h1 class="h2">Add Pages</h1>
-		         <a href="/admin/pages"><button type="button" class="btn btn-dark" float="left">Back</button></a>
-		          </div>
-		         
-		           <div> 
-		          <div th:if="${message}" th:text="${message}" th:class="${'alert' + alertClass}"></div>
-				<form method="POST" th:object="${page}" th:action="@{/admin/pages/addPage}">
-				<div th:if=	"${#fields.hasErrors('*')}" class="alert alert-danger">
-					<h2>Fields have errors</h2>
+<body>
+	<nav th:replace="fragments/nav :: nav-page"></nav>
+
+	<div class="container-fluid">
+		<div class="row">
+			<nav th:replace="fragments/sidebarMenu"></nav>
+			<main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+				<div
+					class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+					<h1 class="h2">Add Pages</h1>
+					<a href="/admin/pages"><button type="button"
+							class="btn btn-dark" float="left">Back</button></a>
 				</div>
-					  <div class="form-group">
-					    <label for="">Title</label>
-					    <input type="text" class="form-control"  th:field="*{title}" required/>
-					    <span class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}" ></span>
-					  </div>
-					  <div class="form-group">
-					    <label for="">Slug</label>
-					    <input type="text" class="form-control" id="slug"  th:field="*{slug}" />
-					  
-					  </div>
-					   <div class="form-group">
-					    <label for="">Content</label>
-					    <textarea class="form-control"   rows="10" th:field="*{contents}"  required></textarea>
-						<span class="error" th:if="${#fields.hasErrors('contents')}" th:errors="*{contents}" >	</span>				  
-					  </div>
-					  <div>
-					  	<button type="submit" class="btn btn-info">Save</button>
-					  </div>
-					  
-					  
-			   </form>
-			</div>
+
+				<div>
+					<div th:if="${message}" th:text="${message}"
+						th:class="${'alert' + alertClass}"></div>
+					<form method="POST" th:object="${page}"
+						th:action="@{/admin/pages/addPage}">
+						<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+							<h2>Fields have errors</h2>
+						</div>
+						<div class="form-group">
+							<label for="">Title</label> <input type="text"
+								class="form-control" th:field="*{title}" required /> <span
+								class="error" th:if="${#fields.hasErrors('title')}"
+								th:errors="*{title}"></span>
+						</div>
+						<div class="form-group">
+							<label for="">Slug</label> <input type="text"
+								class="form-control" id="slug" th:field="*{slug}" />
+
+						</div>
+						<div class="form-group">
+							<label for="">Content</label>
+							<textarea class="form-control" rows="10" th:field="*{contents}"
+								required></textarea>
+							<span class="error" th:if="${#fields.hasErrors('contents')}"
+								th:errors="*{contents}"> </span>
+						</div>
+						<div>
+							<button type="submit" class="btn btn-info">Save</button>
+						</div>
+
+
+					</form>
+				</div>
 			</main>
-			
-			
-			
-		  </div>
+
+
+
 		</div>
-			<footer th:replace="fragments/footer" ></footer>
-	</body>
+	</div>
+	<footer th:replace="fragments/footer"></footer>
+</body>
 </html>
-		
-		
-		
-		
-		
-		
+<script type="text/javascript">
+	CKEDITOR.replace('contents');
+</script>
+
+
+
+
+

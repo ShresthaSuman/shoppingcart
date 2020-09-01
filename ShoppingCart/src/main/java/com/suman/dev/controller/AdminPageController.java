@@ -61,7 +61,7 @@ public class AdminPageController{
 		
 		
 		
-		return "/admin/page/addPage";
+		return  "redirect:/admin/pages/addPage";
 	}
 	
 	
@@ -91,7 +91,7 @@ public class AdminPageController{
 			
 			pageRepository.save(page);
 		}
-		return "/admin/page/editPage";	
+		return "redirect:/admin/pages/edit/"+page.getId();	
 		}
 	
 	@GetMapping("/delete/{id}")

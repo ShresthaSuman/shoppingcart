@@ -19,7 +19,7 @@
 		         <a href="/admin/pages"><button type="button" class="btn btn-dark" float="left">Back</button></a>
 		      </div>
 		          
-		           <div th:if="${message}" th:text="${message}" th:class="${'alert ' + alertClass}" ></div>
+		           <div th:if="${message}" th:text="${message}" th:class="${'alert' + alertClass}" ></div>
 		          
 		          <div>
 				<form method="POST" th:object="${page}" th:action="@{/admin/pages/edit}">
@@ -61,6 +61,10 @@
 			<footer th:replace="fragments/footer" ></footer>
 </body>
 </html>
+
+<script type="text/javascript">
+	CKEDITOR.replace('contents');
+</script>
 		
 		
 		
