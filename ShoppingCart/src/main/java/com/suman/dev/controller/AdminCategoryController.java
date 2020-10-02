@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.suman.dev.entity.Category;
 import com.suman.dev.entity.Page;
-import com.suman.dev.repository.AdminCategoryRepositiry;
+import com.suman.dev.repository.AdminCategoryRepository;
 
 @Controller
 @RequestMapping("/admin/category")
@@ -27,7 +27,7 @@ public class AdminCategoryController {
 
 	String filepath = "/admin/category/";
 	@Autowired
-	AdminCategoryRepositiry categoryRepository;
+	AdminCategoryRepository categoryRepository;
 
 	@GetMapping
 	public String index(Model model) {

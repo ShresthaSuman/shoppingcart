@@ -25,7 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.suman.dev.entity.Category;
 import com.suman.dev.entity.Product;
-import com.suman.dev.repository.AdminCategoryRepositiry;
+import com.suman.dev.repository.AdminCategoryRepository;
 import com.suman.dev.repository.AdminProductRepository;
 
 @Controller
@@ -37,7 +37,7 @@ public class AdminProductController {
 	AdminProductRepository productRepository;
 
 	@Autowired
-	AdminCategoryRepositiry categoryRepository;
+	AdminCategoryRepository categoryRepository;
 
 	@GetMapping
 	public String index(Model model) {

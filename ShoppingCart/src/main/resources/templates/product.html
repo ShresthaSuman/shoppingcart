@@ -12,23 +12,32 @@
 		   <nav th:replace="/fragments/categoryMenu.html"></nav>
 		    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 		      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-		        <h1 class="h2">Home</h1>
+		       
 		        <div class="btn-toolbar mb-2 mb-md-0">
-		          <div class="btn-group mr-2">
-		            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-		            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-		          </div>
-		          <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-		            <span data-feather="calendar"></span>
-		            This week
-		          </button>
+		       
+		         
 		        </div>
 		      </div>
-					<p> <div th:utext="${page.contents}"></div> </p>
+				 <h1>	<p> <div th:utext="${categoryName} ?: 'All Items'" id=""></div> </p> </h1>
 				
-					this is page
-		      
-		      
+				<div class="row">
+					<div class="col-4" th:each="product:${product}" >
+						<p>
+							<img alt="${product.image}" th:src="@{'/media/'+ ${product.image} }" style="width:100px;">
+	
+						</p>
+							<h3 th:text="${product.name}"></h3>
+							<p th:text=" '$' + ${product.price}"> </p>
+							<p th:utext="${product.description}"> </p>
+							<div> 
+								<a href="#"> Add to cart </a>
+								
+							</div>
+							<br>
+					</div>
+					 
+				</div>
+				      
 		    
 		    </main>
 		  </div>
@@ -36,14 +45,4 @@
 		<footer th:replace="fragments/footer.html"></footer>
 	</body>
 </html>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
