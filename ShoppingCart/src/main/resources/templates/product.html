@@ -2,7 +2,9 @@
 <!doctype html>
 <html lang="en">
 
-	<head th:replace="fragments/head" ></head>
+	<head th:replace="fragments/head" >
+	
+	</head>
 
  	<body>
   		<nav th:replace="fragments/nav::nav-home"></nav>
@@ -10,13 +12,10 @@
 		<div class="container-fluid">
 		  <div class="row">
 		   <nav th:replace="/fragments/categoryMenu.html"></nav>
-		    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+		    <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-md-4">
 		      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
 		       
-		        <div class="btn-toolbar mb-2 mb-md-0">
-		       
-		         
-		        </div>
+		        
 		      </div>
 				 <h1>	<p> <div th:utext="${categoryName} ?: 'All Items'" id=""></div> </p> </h1>
 				
@@ -29,9 +28,14 @@
 							<h3 th:text="${product.name}"></h3>
 							<p th:text=" '$' + ${product.price}"> </p>
 							<p th:utext="${product.description}"> </p>
-							<div> 
-								<a href="#"> Add to cart </a>
+							<div style="position:relative;"> 
+								<p>
+								<a class="btn btn-primary addToCart" th:attr="data_id=${product.id}"  th:href="@{'/cart/add/'+ ${product.id} }"> Add to cart </a>
+								<img  class="ajaxLoader d-none" src="/image/ajax-loader.gif">
+								</p>
 								
+								<div class="hide productAdded">Item added Successfully</div>
+							  
 							</div>
 							<br>
 					</div>
@@ -43,6 +47,52 @@
 		  </div>
 		</div>
 		<footer th:replace="fragments/footer.html"></footer>
+		<script>
+	
+	$("a.addToCart").click(function(e){
+		e.preventDefault();
+		let $this = $(this);
+		$this.next().removeClass('d-none');
+		let id= $this.attr("data_id");
+		let url="/cart/add/"+id;
+		$.get(url,{},function(data){
+			$('div.cart.cartActive').html(data);
+		}).done(function(){
+			$this.parent.parent.find('div.productAdded').fadeIn();
+			$this.next().addClass('d-none');
+			setTimeout(()=>{
+				$this.parent.parent.find('div.productAdded').fadeOut();
+			}
+			,1000);
+		});
+		
+		
+		
+	});
+			
+		
+</script>
+
+		
 	</body>
 </html>
 		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

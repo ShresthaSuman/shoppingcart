@@ -1,5 +1,5 @@
- <nav id="sidebarMenu" class="col-md-2 col-lg-2 d-md-block bg-light sidebar collapse" th:fragment="categoryMenu">
-      <div class="sidebar-sticky pt-3">
+ <nav id="sidebarMenu" class="w-10 m-6 p-6  col-md-1 col-lg-3 d-md-block bg-light sidebar collapse" th:fragment="categoryMenu">
+      <div class="sidebar-sticky pt-2">
       <h3>Categories</h3>
         <ul class="nav flex-column">
           <li class="list-group-item">
@@ -15,25 +15,27 @@
       	 </li>
       	 
         </ul>
-        
-        <div class="bg-dark text-white p-2">
+         <div class="text-success pt-2">
         	<div class="cart cartActive"  th:if="${checkActiveCart}">
-        		<p> Total Item in cart : <span th:text="${size}"> </span> </p>
-        		<p> Total Price: <span th:text="${totalPrice}"></span>
+        		<p> Total Item in cart : <span th:text="${csize}"> </span> </p>
+        		<p> Total Price: $ <span th:text="${ctotalPrice}"></span>
         		<p>
         			<a href="/cart/view" class="btn btn-primary"> View cart </a>
         			<a href="/cart/delete" class="btn btn-danger"> Delete from cart </a>
         		</p>
         	</div> 
-        	<div class="cart cartInActive" th:unless="${checkActive}">
+        	<div class="cart cartInActive" th:unless="${checkActiveCart}">
         		<p> No Item in a cart </p>
         		
         	</div>
         
         </div>
+       
 
       
       </div>
+      
+      
     </nav>
     
     

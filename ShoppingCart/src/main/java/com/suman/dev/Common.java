@@ -1,5 +1,6 @@
 package com.suman.dev;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 
@@ -27,7 +28,11 @@ public class Common {
 	AdminCategoryRepository categoryRepository;
 	
 	@ModelAttribute
-	public void commonSharedData(Model model, HttpSession session) {
+	public void commonSharedData(Model model, HttpSession session, Principal principal) {
+		
+		if(principal != null) {
+			model.addAttribute("loginUser", principal.getName());
+		}
 		List<Page> page = pageRepository.findAll();
 		List<Category> category= categoryRepository.findAll();
 		
@@ -42,8 +47,8 @@ public class Common {
 				
 			}
 			checkActiveCart = true;
-			model.addAttribute("size",size);
-			model.addAttribute("totalPrice",totalPrice);
+			model.addAttribute("csize",size);
+			model.addAttribute("ctotalPrice",totalPrice);
 			model.addAttribute("checkActiveCart", checkActiveCart);
 		}
 		

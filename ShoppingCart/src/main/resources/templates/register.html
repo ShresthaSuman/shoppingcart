@@ -1,0 +1,106 @@
+
+<!doctype html>
+<html lang="en">
+
+	<head th:replace="fragments/head" >
+	
+	</head>
+
+ 	<body>
+  		<nav th:replace="fragments/nav::nav-home"></nav>
+
+		<div class="container-fluid">
+		  <div class="row">
+		   <nav th:replace="/fragments/categoryMenu.html"></nav>
+		    <main role="main" class="col-md-9 ml-sm-auto col-lg-9 px-md-4">
+		      <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+		       
+		       
+		       <div>
+					<div th:if="${message}" th:text="${message}"
+						th:class="${'alert' + alertClass}"></div>
+					<form th:action="@{/register/newRegister}" method="POST"
+						th:object="${user}">
+
+						<div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+							<h2>Has errors</h2>
+						</div>
+							<center><h1>New User Register</h1></center>
+						<div class="form-group">
+							<label name>Username</label> 
+							<input type="text" class="form-control" th:field="*{username}" placeholder="Enter username" required />
+							<span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+						</div>
+						
+						<div class="form-group">
+							<label name>Password</label> 
+							<input type="password" class="form-control" th:field="*{password}" placeholder="Enter password" required />
+							<span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+						</div>
+						
+						<div class="form-group">
+							<label name>Re-enter Password</label> 
+							<input type="password" class="form-control" th:field="*{confirmPassword}" placeholder="Re-enter above password" required />
+							<span class="error" th:if="${passwordNotMatch}">Password do not match</span>
+						</div>
+						
+						<div class="form-group">
+							<label name>Email</label> 
+							<input type="email" class="form-control" th:field="*{email}" placeholder="Enter valid email address" required />
+							<span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+						</div> 
+						
+						<div class="form-group">
+							<label name>Phone Number</label> 
+							<input type="text" class="form-control" th:field="*{phone_number}" placeholder="Enter phone number" required />
+							<span class="error" th:if="${#fields.hasErrors('phone_number')}" th:errors="*{phone_number}"></span>
+						</div> 
+						
+						
+						
+						<div>
+							<button type="submit" class="btn btn-info">Register New User</button>
+						</div>
+						
+							<a href="/login">SignIn</a>
+						
+					
+
+
+					</form>
+				
+				</div>
+		       
+		       
+		        
+		     </div>
+		    
+		    </main>
+		  </div>
+		</div>
+		<footer th:replace="fragments/footer.html"></footer>
+		
+
+		
+	</body>
+</html>
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	

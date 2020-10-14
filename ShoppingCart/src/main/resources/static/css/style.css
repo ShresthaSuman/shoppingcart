@@ -1,3 +1,10 @@
 span.error{
 	color: red !important;
 }
+
+div.productAdded{
+	display: absolute;
+}
+.hide{
+	display: none;
+}
